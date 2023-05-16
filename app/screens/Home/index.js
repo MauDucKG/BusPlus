@@ -1,17 +1,32 @@
 import { View, Text } from "react-native";
 import React from "react";
 import HomeScreen from "./HomeScreen";
+import Routes from "./Routes";
+import DetailRoute from "./DetailRoute";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const HomeStack = createNativeStackNavigator()
+const HomeStack = createNativeStackNavigator();
 
 export default function Home() {
   return (
-      <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-        <HomeStack.Screen name="Home" component={HomeScreen} />
-        {/* <HomeStack.Screen name="Details" component={DetailDoor} />
+    <HomeStack.Navigator
+      screenOptions={{
+        headerShown: true,
+      }}
+    >
+      <HomeStack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <HomeStack.Screen name="Routes" component={Routes} />
+      <HomeStack.Screen name="DetailRoute" component={DetailRoute} />
+      {/* <HomeStack.Screen name="Details" component={DetailDoor} />
         <HomeStack.Screen name="Add" component={NewDoor} />
         <HomeStack.Screen name="Edit" component={EditDoor} /> */}
-      </HomeStack.Navigator>
+    </HomeStack.Navigator>
   );
 }

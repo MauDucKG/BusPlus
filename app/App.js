@@ -48,6 +48,7 @@ function Screen() {
         },
         tabBarInactiveTintColor: "black",
         tabBarActiveTintColor: "#C84771",
+        headerShown: false,
         tabBarStyle: {
           height: 80,
           paddingBottom: 16,

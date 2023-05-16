@@ -1,9 +1,16 @@
-import { SafeAreaView, View, Text, StyleSheet, TextInput } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import MapView from "react-native-maps";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [text, onChangeText] = React.useState("Useless Text");
   return (
     <SafeAreaView style={styles.container}>
@@ -22,6 +29,24 @@ export default function HomeScreen() {
           />
         </View>
       </View>
+
+      <TouchableOpacity
+        style={styles.lookup}
+        onPress={() => {
+          navigation.navigate("Routes");
+        }}
+      >
+        <Ionicons
+          style={styles.searchIcon_lookup}
+          name="ios-search"
+          size={43}
+          color="#248DDE"
+        />
+        <View style={styles.lookup_text}>
+          <Text style={styles.lookup_text_header}>Look up</Text>
+          <Text style={styles.lookup_text_body}>About the bus route</Text>
+        </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -31,9 +56,35 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
   },
+
+  lookup_text: {
+    alignItems: "center",
+  },
+
+  lookup_text_header: {
+    fontSize: 20,
+    fontWeight: 500,
+  },
+
+  lookup_text_body: {
+    fontSize: 14,
+    color: "#C7C5CD",
+  },
+  lookup: {
+    position: "absolute",
+    alignItems: "center",
+    bottom: 16,
+    left: 16,
+    right: 16,
+    width: "45%",
+    height: 122,
+    backgroundColor: "white",
+    borderRadius: 20,
+  },
+
   searchSection: {
     position: "absolute",
-    top: 16,
+    top: 32,
     left: 16,
     right: 16,
     flex: 1,
@@ -53,6 +104,12 @@ const styles = StyleSheet.create({
   searchIcon: {
     padding: 10,
   },
+
+  searchIcon_lookup: {
+    paddingBottom: 5,
+    paddingTop: 13,
+  },
+
   input: {
     flex: 1,
   },
