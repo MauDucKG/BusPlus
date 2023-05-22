@@ -17,6 +17,7 @@ const createS = createNativeStackNavigator();
 function LoginStackScreen() {
   return (
     <createS.Navigator screenOptions={{ headerShown: false }}>
+      <createS.Screen name="Onboard" component={OnBoarding} />
       <createS.Screen name="LoginS" component={Login} />
       <createS.Screen name="Main" component={Screen} />
     </createS.Navigator>
