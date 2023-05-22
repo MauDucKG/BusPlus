@@ -9,8 +9,19 @@ import Podcast from "./screens/Podcast";
 import Profile from "./screens/Profile";
 import Purchase from "./screens/Purchase";
 import Tasks from "./screens/Tasks";
+import Login from "./screens/Login";
+import OnBoarding from "./screens/OnBoarding";
 
 const Tab = createBottomTabNavigator();
+const createS = createNativeStackNavigator();
+function LoginStackScreen() {
+  return (
+    <createS.Navigator screenOptions={{ headerShown: false }}>
+      <createS.Screen name="LoginS" component={Login} />
+      <createS.Screen name="Main" component={Screen} />
+    </createS.Navigator>
+  );
+}
 
 function Screen() {
   return (
@@ -70,11 +81,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <AppStack.Navigator>
-        {/* <HistoryStack.Screen
-        name="LoginStack"
-        component={LoginStackScreen}
-        options={{ headerShown: false }}
-      /> */}
+        <AppStack.Screen
+          name="LoginStack"
+          component={LoginStackScreen}
+          options={{ headerShown: false }}
+        />
         <AppStack.Screen
           name="Main"
           component={Screen}
