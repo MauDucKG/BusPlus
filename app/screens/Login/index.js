@@ -10,11 +10,7 @@ const LoginStack = createNativeStackNavigator();
 
 export default function Login() {
   return (
-    <LoginStack.Navigator
-      screenOptions={{
-        headerShown: true,
-      }}
-    >
+    <LoginStack.Navigator>
         <LoginStack.Screen
             name="Login"
             component={LoginScreen}
@@ -26,17 +22,13 @@ export default function Login() {
         <LoginStack.Screen
             name="Signup"
             component={SignupScreen}
-            options={{
-            headerShown: false,
-            }}
+            options={{ headerShown: false }}
         />
 
         <LoginStack.Screen
             name="Forgot"
             component={ForgotScreen}
-            options={{
-            headerShown: false,
-            }}
+            options={{ headerShown: false }}
         />
     </LoginStack.Navigator>
   );

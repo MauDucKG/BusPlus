@@ -2,24 +2,20 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { ImageBackground } from "react-native";
-import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, Alert} from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, Alert, Linking } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Login = ({ navigation }) => {
   const handleLogin = () => {
     return navigation.navigate('Main');
   };
+
+  const create = () => {
+    return navigation.navigate('Signup');
+  };
+
   const handleForgot = () => {
-    return navigation.navigate('Password')
-  };
-  const handleHelp = () => {
-    return navigation.navigate('Password')
-  };
-  const handleContact = () => {
-    return navigation.navigate('Password')
-  };
-  const handleAboutUs = () => {
-    return navigation.navigate('Password')
+    return navigation.navigate('Forgot')
   };
 
   return (
@@ -41,29 +37,37 @@ const Login = ({ navigation }) => {
 
       <View style={styles.container2}>        
         <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            placeholder="Username"
-            // onChangeText={(text) => setUsername(text)}
-          />
+          <View style={styles.formcenter}>
+            <TextInput
+              style={styles.input}
+              placeholder="Username"
+              // onChangeText={(text) => setUsername(text)}
+            />
+          </View>
         </View>
       </View>
 
       <View style={styles.container2}>     
         <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            secureTextEntry={true}
-            onChangeText={(text) => setPassword(text)}
-          />
-          <TouchableOpacity onPress={handleForgot}>
-            <View>
-              <Text style={styles.caption}>Forgot PassWord</Text>
-            </View>
-          </TouchableOpacity>    
+          <View style={styles.formcenter}>
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              secureTextEntry={true}
+              // onChangeText={(text) => setPassword(text)}
+            />
+          </View>
+          <View style={styles.captionContainer}>
+            <TouchableOpacity onPress={handleForgot}>
+              <View>
+                <Text style={styles.caption}>Forgot Password</Text>
+              </View>
+            </TouchableOpacity>    
+          </View>
         </View>
       </View>
+
+      <View style = {styles.container3}></View>
 
       <View style={styles.content}>
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
@@ -79,9 +83,9 @@ const Login = ({ navigation }) => {
 
 
       <View style = {styles.container3}>
-        <TouchableOpacity style={styles.thanh} onPress={handleLogin}>
+        <TouchableOpacity style={styles.thanh} onPress={create}>
           <View style={styles.row}>
-            <Text style={styles.thanhText}>Creat Account</Text>
+            <Text style={styles.thanhText}>Create Account</Text>
             <Ionicons style={styles.padd} name={"chevron-forward-outline"} size={20} color={"#FFFFFF"}></Ionicons>
           </View>
         </TouchableOpacity>
@@ -132,6 +136,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent:"center",
   },
+
+  container4: {
+    width: '90%',
+    alignItems: "center",
+    justifyContent:"center",
+  },
+
   logo: {
     width: "100%",
     resizeMode: "contain",
@@ -155,8 +166,12 @@ const styles = StyleSheet.create({
   },
 
   form: {
-    alignItems: "center",
+    justifyContent: "space-between",
     width: "100%",
+  },
+
+  formcenter: {
+    alignItems: "center",
   },
 
   form1: {
@@ -174,27 +189,19 @@ const styles = StyleSheet.create({
   },
   
   button: {
-    width: "80%",
+    width: "90%",
     height: 45,
     backgroundColor: "#C84771",
     borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
   },
-  buttonText: {
-    color: "black",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  textlogin: {
-    color: 'white',
-    fontSize: 40,
-    fontWeight: "bold",
-  },
+
   caption: {
     color: 'black',
     fontWeight: "bold",
     textAlign: 'right',
+    marginRight: 19,
   },
 
 });
