@@ -22,41 +22,74 @@ const formattedDate = `${day}/${month}/${year}`;
 async function getalltask() {
   try {
     const response = await axios.get(TASKAPI);
-    return response.data;
+    return response.data.tasks;
   } catch (error) {
-    console.error("getallroute");
+    console.error(error);
     throw error;
   }
 }
 
 const Task = ({ task, navigation }) => {
-  return (
-    <View style={styles.task}>
-      <View style={styles.task_l}>
-        <View style={styles.task_l_name}>
-          <Text style={{ fontSize: 24 }}>{task.title}</Text>
+  if (task.important)
+    return (
+      <TouchableOpacity style={styles.task2} onPress={navigation.navigation("Edit", task)}>
+        <View style={styles.task_l}>
+          <View style={styles.task_l_name}>
+            <Text style={{ fontSize: 24 }}>{task.title}</Text>
+          </View>
+          <View style={styles.task_l_loca}>
+            <Ionicons name="location" size={20} color="#248DDE" />
+            <Text style={{ color: "#248DDE", fontWeight: 500 }}>
+              Location:{" "}
+            </Text>
+            <Text style={{ color: "#C7C5CD" }}>{task.location}</Text>
+          </View>
+          <View style={styles.task_l_loca}>
+            <Ionicons name="document-text" size={20} color="#41C97C" />
+            <Text style={{ color: "#41C97C", fontWeight: 500 }}>Note: </Text>
+            <Text style={{ color: "#C7C5CD" }}>{task.note}</Text>
+          </View>
         </View>
-        <View style={styles.task_l_loca}>
-          <Ionicons name="location" size={20} color="#248DDE" />
-          <Text style={{ color: "#248DDE", fontWeight: 500 }}>Location: </Text>
-          <Text style={{ color: "#C7C5CD" }}>{task.location}</Text>
+        <View style={styles.task_r}>
+          <Ionicons
+            style={styles.searchIcon_lookup}
+            name="close-circle-outline"
+            size={24}
+            color="#000"
+          />
         </View>
-        <View style={styles.task_l_loca}>
-          <Ionicons name="document-text" size={20} color="#41C97C" />
-          <Text style={{ color: "#41C97C", fontWeight: 500 }}>Note: </Text>
-          <Text style={{ color: "#C7C5CD" }}>{task.note}</Text>
+      </TouchableOpacity>
+    );
+  else
+    return (
+      <TouchableOpacity style={styles.task1} onPress={navigation.navigation("Edit", task)}>
+        <View style={styles.task_l}>
+          <View style={styles.task_l_name}>
+            <Text style={{ fontSize: 24 }}>{task.title}</Text>
+          </View>
+          <View style={styles.task_l_loca}>
+            <Ionicons name="location" size={20} color="#248DDE" />
+            <Text style={{ color: "#248DDE", fontWeight: 500 }}>
+              Location:{" "}
+            </Text>
+            <Text style={{ color: "#C7C5CD" }}>{task.location}</Text>
+          </View>
+          <View style={styles.task_l_loca}>
+            <Ionicons name="document-text" size={20} color="#41C97C" />
+            <Text style={{ color: "#41C97C", fontWeight: 500 }}>Note: </Text>
+            <Text style={{ color: "#C7C5CD" }}>{task.note}</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.task_r}>
-        <Ionicons
-          style={styles.searchIcon_lookup}
-          name="close-circle-outline"
-          size={24}
-          color="#000"
-        />
-      </View>
-    </View>
-  );
+        <View style={styles.task_r}>
+          <Ionicons
+            style={styles.searchIcon_lookup}
+            name="close-circle-outline"
+            size={24}
+            color="#000"
+          />
+        </View>
+      </TouchableOpacity>
+    );
 };
 
 export default function Today({ navigation }) {
@@ -96,7 +129,7 @@ export default function Today({ navigation }) {
         </View>
       </ScrollView>
       <View style={styles.add}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={navigation.navigation("Add")}>
           <Ionicons name="add-circle-outline" size={40} color="#000" />
         </TouchableOpacity>
       </View>
@@ -123,12 +156,28 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
 
-  task: {
+  task1: {
     flex: 1,
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "white",
+    marginBottom: 16,
+    justifyContent: "space-between",
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+
+  task2: {
+    flex: 1,
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F9E3E3",
     marginBottom: 16,
     justifyContent: "space-between",
     borderRadius: 20,

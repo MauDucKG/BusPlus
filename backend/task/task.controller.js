@@ -18,11 +18,12 @@ class taskController {
   }
 
   newtask = async function (req, res) {
-    const { title, location, note } = req.body;
+    const { title, location, note, important } = req.body;
     const task = new taskModel({
       title,
       location,
       note,
+      important,
     });
     try {
       await task.save();
