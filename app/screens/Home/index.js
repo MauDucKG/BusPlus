@@ -24,9 +24,6 @@ export default function Home() {
 
       <HomeStack.Screen name="Routes" component={Routes} />
       <HomeStack.Screen name="DetailRoute" component={DetailRoute} />
-      {/* <HomeStack.Screen name="Details" component={DetailDoor} />
-        <HomeStack.Screen name="Add" component={NewDoor} />
-        <HomeStack.Screen name="Edit" component={EditDoor} /> */}
     </HomeStack.Navigator>
   );
 }
