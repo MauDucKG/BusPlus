@@ -24,7 +24,7 @@ async function getallroute() {
 }
 
 const BusRoute = ({ route, navigation }) => {
-    const data = route
+  const data = route;
   return (
     <View style={styles.route_item}>
       <View>
@@ -42,7 +42,7 @@ const BusRoute = ({ route, navigation }) => {
         <TouchableOpacity
           style={styles.route_item_foot_part}
           onPress={() => {
-            navigation.navigate("DetailRoute", {data});
+            navigation.navigate("DetailRoute", { data });
           }}
         >
           <Text style={styles.route_item_foot_text}>Detail</Text>
@@ -134,7 +134,9 @@ export default function Routes({ navigation }) {
         </View>
         <View>
           {filteredData.map((route, index) => {
-            return <BusRoute route={route} navigation={navigation} key={index}/>;
+            return (
+              <BusRoute route={route} navigation={navigation} key={index} />
+            );
           })}
         </View>
       </ScrollView>
