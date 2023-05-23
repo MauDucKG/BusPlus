@@ -75,7 +75,7 @@ export default WelcomeScreen = ({ navigation }) => {
           style={styles.button}
           onPress={() => navigation.navigate("LoginS", { name: "LoginS" })}
         >
-          <Text style={styles.thanhText}>NEXT</Text>
+          <Text style={styles.thanhText}>GET STARTED</Text>
         </TouchableOpacity>
       </View>
       </View>
