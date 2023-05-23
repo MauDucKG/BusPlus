@@ -6,11 +6,14 @@ import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput,
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const OnBoarding = ({ navigation }) => {
+    const handlePress = () => {
+      navigation.navigate('ob3');
+    };
     useEffect(() => {
         // Chờ 1 giây trước khi chuyển sang trang đăng nhập
         const timer = setTimeout(() => {
-            navigation.navigate('LoginS');
-        }, 400);
+            navigation.navigate('ob3');
+        }, 1000);
 
         // Clear timeout khi component bị unmount
         // return () => clearTimeout(timer);
@@ -18,8 +21,8 @@ const OnBoarding = ({ navigation }) => {
     
   return (
     <>
-    <View style = {styles.container}>
-    </View>
+      <TouchableOpacity style={styles.container} onPress={handlePress}>
+      </TouchableOpacity>
     </>
   );
 };
