@@ -6,20 +6,24 @@ import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput,
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const OnBoarding = ({ navigation }) => {
+    const handlePress = () => {
+      navigation.navigate('ob2');
+    };
+
     useEffect(() => {
         // Chờ 3 giây trước khi chuyển sang trang đăng nhập
         const timer = setTimeout(() => {
             navigation.navigate('ob2');
-        }, 2000);
+        }, 3000);
         // Clear timeout khi component bị unmount
-        // return () => clearTimeout(timer);
+        return () => clearTimeout(timer);
         }, []);
     
   return (
     <>
-    <View style = {styles.container}>
+      <TouchableOpacity style={styles.container} onPress={handlePress}>
         <Text style={styles.text}>BusPlus</Text>
-    </View>
+      </TouchableOpacity>
     </>
   );
 };
