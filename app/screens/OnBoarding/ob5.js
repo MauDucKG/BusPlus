@@ -16,7 +16,7 @@ export default WelcomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.container2}>          
-        <Image style={styles.logo} source={require("../../assets/test2.png")} />
+        <Image style={styles.logo} source={require("../../assets/test3.png")} />
       </View>
       {/* <View style={{height: 300, width: 300}}>
         <LottieView
@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
   logo: {
     width: "100%",
     resizeMode: "contain",
+    marginTop: 40,
   },
 
   button: {

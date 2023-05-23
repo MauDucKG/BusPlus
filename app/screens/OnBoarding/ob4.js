@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
   logo: {
     width: "100%",
     resizeMode: "contain",
+    marginTop: 40,
   },
 
   button: {
