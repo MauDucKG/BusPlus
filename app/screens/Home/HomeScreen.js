@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import MapView from "react-native-maps";
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
 
   searchSection: {
     position: "absolute",
-    top: 32,
+    top: 16 + StatusBar.currentHeight,
     left: 16,
     right: 16,
     flex: 1,
