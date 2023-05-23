@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const userRouter = require("./user/user.router");
 const taskRouter = require("./task/task.router");
+const orderRouter = require("./order/order.router");
 const http = require("http").createServer(app);
 const cors = require("cors");
 const passport = require("passport");
@@ -47,6 +48,7 @@ app.use(cors(corsOptions));
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/tasks", taskRouter);
+app.use("/api/v1/orders", orderRouter);
 
 http.listen(4000, function () {
   console.log("listening on port 4000");
