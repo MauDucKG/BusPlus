@@ -40,7 +40,7 @@ export default function Edit({ navigation, route }) {
           console.log(error);
         });
     } catch (error) {
-      Alert("Lỗi trong khi thêm dữ liệu");
+      Alert.alert("Lỗi trong khi thêm dữ liệu");
       console.error(error);
       throw error;
     }

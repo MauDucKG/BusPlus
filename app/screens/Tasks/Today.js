@@ -32,7 +32,7 @@ async function getalltask() {
 async function handOnDelete(_id, navigation) {
   try {
     const req = {
-      _id: id,
+      _id: _id,
     };
     axios
       .delete(TASKAPI, req)
@@ -43,7 +43,7 @@ async function handOnDelete(_id, navigation) {
         console.log(error);
       });
   } catch (error) {
-    Alert("Lỗi trong khi xóa dữ liệu");
+    Alert.alert("Lỗi trong khi xóa dữ liệu");
     console.error(error);
     throw error;
   }
