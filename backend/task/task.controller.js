@@ -32,6 +32,31 @@ class taskController {
       res.status(500).send(error);
     }
   };
+
+  edittask = async function (req, res) {
+    const { _id, title, location, note, important } = req.body;
+    try {
+      await taskModel.findByIdAndUpdate(
+        { _id },
+        { title, location, note, important }
+      );
+      res.status(200).send("Update done");
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  };
+
+  deletetask = async function (req, res) {
+    const { _id } = req.body;
+    try {
+      await taskModel.findByIdAndRemove(
+        { _id },
+      );
+      res.status(200).send("Delete done");
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  };
 }
 
 module.exports = new taskController();
