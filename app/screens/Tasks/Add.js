@@ -13,7 +13,7 @@ import { Checkbox } from "react-native-paper";
 import React, { useState } from "react";
 import axios from "axios";
 
-const TASKAPI = "https://apibusplus.onrender.com/task";
+const TASKAPI = "https://apibusplus.onrender.com/api/v1/tasks";
 
 export default function Add({navigation}) {
   const [isimportant, setisimportant] = useState(false);

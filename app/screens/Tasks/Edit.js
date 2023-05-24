@@ -13,19 +13,19 @@ import { Checkbox } from "react-native-paper";
 import React, { useState } from "react";
 import axios from "axios";
 
-const TASKAPI = "https://apibusplus.onrender.com/task";
+const TASKAPI = "https://apibusplus.onrender.com/api/v1/tasks";
 
 export default function Edit({ navigation, route }) {
   const [task, settask] = useState(route.params.task);
   const [isimportant, setisimportant] = useState(route.params.task.important);
-  const [name, setname] = useState("");
-  const [loca, setloca] = useState("");
-  const [note, setnote] = useState("");
+  const [name, setname] = useState(route.params.task.title);
+  const [loca, setloca] = useState(route.params.task.location);
+  const [note, setnote] = useState(route.params.task.note);
 
   async function handOnEdit(_id, name, loca, note, isimportant, navigation) {
     try {
       const req = {
-        _id: id,
+        _id: _id,
         title: name,
         location: loca,
         note: note,

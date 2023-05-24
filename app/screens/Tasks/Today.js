@@ -11,7 +11,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const TASKAPI = "https://apibusplus.onrender.com/task";
+const TASKAPI = "https://apibusplus.onrender.com/api/v1/tasks";
 
 const today = new Date();
 const day = today.getDate().toString().padStart(2, "0");
@@ -31,13 +31,24 @@ async function getalltask() {
 
 async function handOnDelete(_id, navigation) {
   try {
-    const req = {
+    let data = JSON.stringify({
       _id: _id,
+    });
+
+    let config = {
+      method: "delete",
+      maxBodyLength: Infinity,
+      url: "https://apibusplus.onrender.com/api/v1/tasks",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
     };
+
     axios
-      .delete(TASKAPI, req)
+      .request(config)
       .then((response) => {
-        // navigation.navigate("Today");
+        console.log(JSON.stringify(response.data));
       })
       .catch((error) => {
         console.log(error);
