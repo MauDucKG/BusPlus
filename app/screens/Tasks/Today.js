@@ -29,19 +29,40 @@ async function getalltask() {
   }
 }
 
+async function handOnDelete(_id, navigation) {
+  try {
+    const req = {
+      _id: _id,
+    };
+    axios
+      .delete(TASKAPI, req)
+      .then((response) => {
+        // navigation.navigate("Today");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } catch (error) {
+    Alert.alert("Lỗi trong khi xóa dữ liệu");
+    console.error(error);
+    throw error;
+  }
+}
+
 const Task = ({ task, navigation }) => {
   if (task.important)
     return (
-      <TouchableOpacity style={styles.task2} onPress={navigation.navigation("Edit", task)}>
-        <View style={styles.task_l}>
+      <View style={styles.task2}>
+        <TouchableOpacity
+          style={styles.task_l}
+          onPress={() => navigation.navigate("Edit task", { task })}
+        >
           <View style={styles.task_l_name}>
             <Text style={{ fontSize: 24 }}>{task.title}</Text>
           </View>
           <View style={styles.task_l_loca}>
             <Ionicons name="location" size={20} color="#248DDE" />
-            <Text style={{ color: "#248DDE", fontWeight: 500 }}>
-              Location:{" "}
-            </Text>
+            <Text style={{ color: "#248DDE", fontWeight: 500 }}>Location:</Text>
             <Text style={{ color: "#C7C5CD" }}>{task.location}</Text>
           </View>
           <View style={styles.task_l_loca}>
@@ -49,21 +70,24 @@ const Task = ({ task, navigation }) => {
             <Text style={{ color: "#41C97C", fontWeight: 500 }}>Note: </Text>
             <Text style={{ color: "#C7C5CD" }}>{task.note}</Text>
           </View>
-        </View>
-        <View style={styles.task_r}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.task_r}>
           <Ionicons
             style={styles.searchIcon_lookup}
             name="close-circle-outline"
-            size={24}
+            size={36}
             color="#000"
           />
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     );
   else
     return (
-      <TouchableOpacity style={styles.task1} onPress={navigation.navigation("Edit", task)}>
-        <View style={styles.task_l}>
+      <View style={styles.task1}>
+        <TouchableOpacity
+          style={styles.task_l}
+          onPress={() => navigation.navigate("Edit task", { task })}
+        >
           <View style={styles.task_l_name}>
             <Text style={{ fontSize: 24 }}>{task.title}</Text>
           </View>
@@ -79,16 +103,21 @@ const Task = ({ task, navigation }) => {
             <Text style={{ color: "#41C97C", fontWeight: 500 }}>Note: </Text>
             <Text style={{ color: "#C7C5CD" }}>{task.note}</Text>
           </View>
-        </View>
-        <View style={styles.task_r}>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.task_r}
+          onPress={() => {
+            handOnDelete(task._id, navigation);
+          }}
+        >
           <Ionicons
             style={styles.searchIcon_lookup}
             name="close-circle-outline"
-            size={24}
+            size={36}
             color="#000"
           />
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     );
 };
 
@@ -99,7 +128,7 @@ export default function Today({ navigation }) {
       const data = await getalltask();
       settasks(data);
     }
-    fetchData();
+    const interval = setInterval(async () => fetchData(), 1000);
   }, []);
 
   return (
@@ -129,7 +158,7 @@ export default function Today({ navigation }) {
         </View>
       </ScrollView>
       <View style={styles.add}>
-        <TouchableOpacity onPress={navigation.navigation("Add")}>
+        <TouchableOpacity onPress={() => navigation.navigate("New task", {})}>
           <Ionicons name="add-circle-outline" size={40} color="#000" />
         </TouchableOpacity>
       </View>

@@ -15,7 +15,7 @@ export default function Home() {
       }}
     >
       <HomeStack.Screen
-        name="Home"
+        name="Home Screen"
         component={HomeScreen}
         options={{
           headerShown: false,
