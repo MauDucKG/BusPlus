@@ -126,7 +126,8 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
     },
     logo: {
-      width: "100%",
+      width: 200,
+      height: 200,
       resizeMode: "contain",
     },
 });

@@ -15,7 +15,13 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function Checkout({ navigation }) {
   const handle = () => {
-    return navigation.navigate('QRCode');
+    if (selectedOption === 'option1') {
+      return navigation.navigate('QRCodeMomo');
+    } else if (selectedOption === 'option2') {
+      return navigation.navigate('QRCodeZalo');
+    } else if (selectedOption === 'option3') {
+      return navigation.navigate('QRCodeVNPay');
+    }
   };
   const [selectedOption, setSelectedOption] = useState('option1');
 

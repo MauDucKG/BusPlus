@@ -3,7 +3,10 @@ import React from "react";
 import History from "./history";
 import Order from "./order";
 import Checkout from "./checkout";
-import QRCode from "./qr";
+import QRCodeMomo from "./qr_momo";
+import QRCodeZalo from "./qr_zalo";
+import QRCodeVN from "./qr_vnpay";
+
 import PaymentMethod from "./payment";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -41,8 +44,16 @@ export default function Purchase() {
         }}
       />
       <PurchaseStack.Screen
-        name="QRCode"
-        component={QRCode}
+        name="QRCodeMomo"
+        component={QRCodeMomo}
+      />
+      <PurchaseStack.Screen
+        name="QRCodeZalo"
+        component={QRCodeZalo}
+      />
+      <PurchaseStack.Screen
+        name="QRCodeVNPay"
+        component={QRCodeVN}
       />
 
       <PurchaseStack.Screen
