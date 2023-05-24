@@ -6,32 +6,29 @@ import {
     TextInput,
     TouchableOpacity,
     StatusBar,
+    Image,
   } from "react-native";
-  import { Tab, TabView } from "@rneui/themed";
   import React, { useState, useEffect } from "react";
   import MapView from "react-native-maps";
   import Ionicons from "react-native-vector-icons/Ionicons";
   
   export default function Checkout({ navigation }) {
-    const [index, setIndex] = useState(2);
-
     const handle = () => {
       return navigation.navigate('PaymentMethod');
     };
-
+  
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.container1}>
-        <Tab value={index} onChange={(e) => setIndex(e)}>
-            <Tab.Item title="History" titleStyle={styles.tabTitle} />
-            <Tab.Item title="Order" titleStyle={styles.tabTitle} />
-            <Tab.Item title="Checkout" titleStyle={styles.tabTitle} />
-        </Tab>
-      </View>
+        <Image style={styles.logo} source={require("../../assets/vnpay.jpg")} />
+        </View>
         <View style={styles.container1}>
           <TouchableOpacity style={styles.button} onPress={handle}>
-            <Text style={styles.thanhText}>Pay</Text>
+            <Text style={styles.thanhText}>Cancel</Text>
           </TouchableOpacity>
+        </View>
+        <View style={styles.container1}>
+  
         </View>
   
       </SafeAreaView>
@@ -42,9 +39,10 @@ import {
     container: {
       flex: 1,
       backgroundColor: "white",
+      justifyContent: "space-between",
     },
     container1: {
-      paddingTop: 30,
+      paddingTop: 60,
       alignItems: 'center',
       justifyContent: "center",
     },
@@ -119,6 +117,7 @@ import {
         borderRadius: 30,
         alignItems: "center",
         justifyContent: "center",
+        position: 'absolute'
       },
     
       thanhText: {
@@ -126,9 +125,10 @@ import {
         fontSize: 14,
         fontWeight: "bold",
       },
-      tabTitle: {
-        color: "black", 
-        fontSize: 15,
+      logo: {
+        width: 200,
+        height: 200,
+        resizeMode: "contain",
       },
   });
   
