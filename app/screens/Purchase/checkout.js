@@ -7,29 +7,32 @@ import {
     TouchableOpacity,
     StatusBar,
   } from "react-native";
+  import { Tab, TabView } from "@rneui/themed";
   import React, { useState, useEffect } from "react";
   import MapView from "react-native-maps";
   import Ionicons from "react-native-vector-icons/Ionicons";
   
-  export default function PodCastScreen({ navigation }) {
-    const [text, onChangeText] = React.useState("Useless Text");
+  export default function Checkout({ navigation }) {
+    const [index, setIndex] = useState(0);
+
+    const handle = () => {
+      return navigation.navigate('PaymentMethod');
+    };
+
     return (
       <SafeAreaView style={styles.container}>
         
-        <View style={styles.searchSection}>
-          <Text style={styles.welcome}>Enjoying The Moment</Text>
-          <View style={styles.searchSection1}>
-            <Ionicons
-              style={styles.searchIcon}
-              name="ios-search"
-              size={20}
-              color="#000"
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Search the podcast here ..."
-            />
-          </View>
+        <View style={styles.container1}>
+        <Tab value={index} onChange={(e) => setIndex(e)}>
+            <Tab.Item title="History" titleStyle={styles.tabTitle} />
+            <Tab.Item title="Order" titleStyle={styles.tabTitle} />
+            <Tab.Item title="Checkout" titleStyle={styles.tabTitle} />
+        </Tab>
+      </View>
+        <View style={styles.container1}>
+          <TouchableOpacity style={styles.button} onPress={handle}>
+            <Text style={styles.thanhText}>Pay</Text>
+          </TouchableOpacity>
         </View>
   
       </SafeAreaView>
@@ -40,6 +43,11 @@ import {
     container: {
       flex: 1,
       backgroundColor: "white",
+    },
+    container1: {
+      paddingTop: 30,
+      alignItems: 'center',
+      justifyContent: "center",
     },
   
     lookup_text: {
@@ -104,6 +112,24 @@ import {
         width: '100%',
         textAlign: "center",
         paddingBottom: 15,
+      },
+      button: {
+        width: "30%",
+        height: 45,
+        backgroundColor: "#F2A3BD",
+        borderRadius: 30,
+        alignItems: "center",
+        justifyContent: "center",
+      },
+    
+      thanhText: {
+        color: "black",
+        fontSize: 14,
+        fontWeight: "bold",
+      },
+      tabTitle: {
+        color: "black", 
+        fontSize: 15,
       },
   });
   

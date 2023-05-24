@@ -1,109 +1,199 @@
 import {
-    SafeAreaView,
-    View,
-    Text,
-    StyleSheet,
-    TextInput,
-    TouchableOpacity,
-    StatusBar,
-  } from "react-native";
-  import React, { useState, useEffect } from "react";
-  import MapView from "react-native-maps";
-  import Ionicons from "react-native-vector-icons/Ionicons";
-  
-  export default function PodCastScreen({ navigation }) {
-    const [text, onChangeText] = React.useState("Useless Text");
-    return (
-      <SafeAreaView style={styles.container}>
-        
-        <View style={styles.searchSection}>
-          <Text style={styles.welcome}>Enjoying The Moment</Text>
-          <View style={styles.searchSection1}>
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  StatusBar,
+  Image,
+} from "react-native";
+import { RadioGroup, RadioButton } from 'react-native-elements';
+import React, { useState, useEffect } from "react";
+import MapView from "react-native-maps";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
+export default function Checkout({ navigation }) {
+  const handle = () => {
+    return navigation.navigate('QRCode');
+  };
+  const [selectedOption, setSelectedOption] = useState('option1');
+
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.container1}>
+        <TouchableOpacity
+          style={styles.radioButtonMomo}
+          onPress={() => handleOptionSelect('option1')}
+        >
+          <View style={styles.icon1}>
+            <Image style={styles.logo} source={require("../../assets/payment3.png")} />
+          </View>
+          <View>
+            <Text style={styles.text}>Momo QR</Text>
+          </View>
+          <View style={styles.icon3}>
             <Ionicons
-              style={styles.searchIcon}
-              name="ios-search"
-              size={20}
+              name={selectedOption === 'option1' ? 'radio-button-on-outline' : 'radio-button-off-outline'}
+              size={24}
               color="#000"
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Search the podcast here ..."
+              style={styles.icon}
             />
           </View>
-        </View>
-  
-      </SafeAreaView>
-    );
-  }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "white",
+          
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.radioButtonVnpay}
+          onPress={() => handleOptionSelect('option2')}
+        >
+          <View style={styles.icon1}>
+            <Image style={styles.logo} source={require("../../assets/payment2.png")} />
+          </View>
+          <View>
+            <Text style={styles.text}>VNPay QR</Text>
+          </View>
+          <View style={styles.icon3}>
+            <Ionicons
+              name={selectedOption === 'option2' ? 'radio-button-on-outline' : 'radio-button-off-outline'}
+              size={24}
+              color="#000"
+              style={styles.icon}
+            />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.radioButtonZalo}
+          onPress={() => handleOptionSelect('option3')}
+        >
+          <View style={styles.icon1}>
+            <Image style={styles.logo} source={require("../../assets/payment1.png")} />
+          </View>
+          <View>
+            <Text style={styles.text}>VNPay QR</Text>
+          </View>
+          <View style={styles.icon3}>
+            <Ionicons
+              name={selectedOption === 'option3' ? 'radio-button-on-outline' : 'radio-button-off-outline'}
+              size={24}
+              color="#000"
+              style={styles.icon}
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+      
+      <View style={styles.container1}>
+        <TouchableOpacity style={styles.button} onPress={handle}>
+          <Text style={styles.thanhText}>Accept</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.container1}>
+        
+      </View>
+
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    justifyContent: "space-between",
+  },
+  container1: {
+    paddingTop: 15,
+    alignItems: 'center',
+    justifyContent: "center",
+  },
+
+  lookup_text: {
+    alignItems: "center",
+  },
+
+  lookup_text_header: {
+    fontSize: 20,
+    fontWeight: 500,
+  },
+
+  lookup_text_body: {
+    fontSize: 14,
+    color: "#C7C5CD",
+  },
+
+  input: {
+    flex: 1,
+  },
+  welcome: {
+      fontWeight: "bold",
+      fontSize: 18,
+      width: '100%',
+      textAlign: "center",
+      paddingBottom: 15,
     },
-  
-    lookup_text: {
+    button: {
+      width: "30%",
+      height: 45,
+      backgroundColor: "#F2A3BD",
+      borderRadius: 30,
       alignItems: "center",
-    },
-  
-    lookup_text_header: {
-      fontSize: 20,
-      fontWeight: 500,
-    },
-  
-    lookup_text_body: {
-      fontSize: 14,
-      color: "#C7C5CD",
-    },
-    lookup: {
-      position: "absolute",
-      alignItems: "center",
-      bottom: 16,
-      left: 16,
-      right: 16,
-      width: "45%",
-      height: 122,
-      backgroundColor: "white",
-      borderRadius: 20,
-    },
-  
-    searchSection: {
-      position: "absolute",
-      top: 16 + StatusBar.currentHeight,
-      left: 16,
-      right: 16,
-      flex: 1,
-    },
-  
-    searchSection1: {
-      flexDirection: "row",
       justifyContent: "center",
-      alignItems: "center",
-      borderWidth: 1,
-      borderRadius: 8,
-      height: 58,
-      width: "100%",
-      borderColor: "#F5C0D2",
-      backgroundColor: "white",
-    },
-    searchIcon: {
-      padding: 10,
+
+      position: 'absolute'
     },
   
-    searchIcon_lookup: {
-      paddingBottom: 5,
-      paddingTop: 13,
+    thanhText: {
+      color: "black",
+      fontSize: 14,
+      fontWeight: "bold",
     },
-  
-    input: {
-      flex: 1,
+    radioButtonZalo: {
+      width: "85%",
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 15,
+      height: 55,
+      backgroundColor: "#D9F6E5",
+      borderRadius: 20,
+      justifyContent: "space-between",
+
     },
-    welcome: {
-        fontWeight: "bold",
-        fontSize: 18,
-        width: '100%',
-        textAlign: "center",
-        paddingBottom: 15,
-      },
-  });
-  
+
+    radioButtonMomo: {
+      width: "85%",
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginVertical: 5,
+      height: 55,
+      backgroundColor: "#FDE1EB",
+      borderRadius: 20,
+      justifyContent: "space-between",
+
+    },
+
+    radioButtonVnpay: {
+      width: "85%",
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 15,
+      height: 55,
+      backgroundColor: "#BCE0FB",
+      borderRadius: 20,
+      justifyContent: "space-between",
+
+    },
+    icon1: {
+      marginLeft: 25,
+    },
+    icon3: {
+      marginRight: 25,
+    },
+    text: {
+      fontSize: 16,
+    },
+});

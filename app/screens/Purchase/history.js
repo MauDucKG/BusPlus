@@ -87,12 +87,15 @@ function removeVietnameseTones(str) {
   return str;
 }
 
-export default function Routes({ navigation }) {
+export default function History({ navigation }) {
   const [routes, setroutes] = useState([]);
   const [searchText, onChangeSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [index, setIndex] = useState(0);
 
+  const handle = () => {
+    return navigation.navigate('order');
+  };
 
   useEffect(() => {
     const filtered = routes.filter(
@@ -118,7 +121,6 @@ export default function Routes({ navigation }) {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
       <View style={styles.container1}>
         <Tab value={index} onChange={(e) => setIndex(e)}>
             <Tab.Item title="History" titleStyle={styles.tabTitle} />
@@ -127,13 +129,15 @@ export default function Routes({ navigation }) {
         </Tab>
       </View>
         <View>
-          {filteredData.map((route, index) => {
-            return (
-              <BusRoute route={route} navigation={navigation} key={index} />
-            );
-          })}
+          <ScrollView>
+              {filteredData.map((route, index) => {
+              return (
+                <BusRoute route={route} navigation={navigation} key={index} />
+              );
+              
+            })}
+          </ScrollView>
         </View>
-      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -163,6 +167,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     color: "black",
     fontSize: 16,
+    fontWeight: 'bold',
   },
 
   route_item_head: {

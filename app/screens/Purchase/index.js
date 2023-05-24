@@ -3,8 +3,8 @@ import React from "react";
 import History from "./history";
 import Order from "./order";
 import Checkout from "./checkout";
-import Qr from "./qr";
-import Payment from "./payment";
+import QRCode from "./qr";
+import PaymentMethod from "./payment";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -41,13 +41,13 @@ export default function Purchase() {
         }}
       />
       <PurchaseStack.Screen
-        name="Qr"
-        component={Qr}
+        name="QRCode"
+        component={QRCode}
       />
 
       <PurchaseStack.Screen
-        name="Payment"
-        component={Payment}
+        name="PaymentMethod"
+        component={PaymentMethod}
       />
     </PurchaseStack.Navigator>
   );

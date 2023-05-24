@@ -82,11 +82,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <AppStack.Navigator>
-        <AppStack.Screen
+        {/* <AppStack.Screen
           name="LoginStack"
           component={LoginStackScreen}
           options={{ headerShown: false }}
-        />
+        /> */}
         <AppStack.Screen
           name="Main"
           component={Screen}
