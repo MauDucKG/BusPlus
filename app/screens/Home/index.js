@@ -2,6 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import HomeScreen from "./HomeScreen";
 import Routes from "./Routes";
+import Find from "./Find";
 import DetailRoute from "./DetailRoute";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -23,6 +24,7 @@ export default function Home() {
       />
 
       <HomeStack.Screen name="Routes" component={Routes} />
+      <HomeStack.Screen name="Find" component={Find} />
       <HomeStack.Screen name="DetailRoute" component={DetailRoute} />
     </HomeStack.Navigator>
   );

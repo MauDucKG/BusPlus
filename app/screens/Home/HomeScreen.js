@@ -16,6 +16,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <MapView style={styles.map} />
+      
       <View style={styles.searchSection}>
         <View style={styles.searchSection1}>
           <Ionicons
@@ -48,6 +49,24 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.lookup_text_body}>About the bus route</Text>
         </View>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.findaway}
+        onPress={() => {
+          navigation.navigate("Find");
+        }}
+      >
+        <Ionicons
+          style={styles.searchIcon_lookup}
+          name="ios-search"
+          size={43}
+          color="#41C97C"
+        />
+        <View style={styles.lookup_text}>
+          <Text style={styles.lookup_text_header}>Find a way</Text>
+          <Text style={styles.lookup_text_body}>Search for a road</Text>
+        </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -76,6 +95,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     bottom: 16,
     left: 16,
+    right: 16,
+    width: "45%",
+    height: 122,
+    backgroundColor: "white",
+    borderRadius: 20,
+  },
+
+  findaway: {
+    position: "absolute",
+    alignItems: "center",
+    bottom: 16,
+    left: 186,
     right: 16,
     width: "45%",
     height: 122,
