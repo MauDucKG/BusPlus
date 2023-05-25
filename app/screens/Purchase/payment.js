@@ -18,9 +18,9 @@ export default function Checkout({ navigation }) {
     if (selectedOption === 'option1') {
       return navigation.navigate('QRCodeMomo');
     } else if (selectedOption === 'option2') {
-      return navigation.navigate('QRCodeZalo');
-    } else if (selectedOption === 'option3') {
       return navigation.navigate('QRCodeVNPay');
+    } else if (selectedOption === 'option3') {
+      return navigation.navigate('QRCodeZalo');
     }
   };
   const [selectedOption, setSelectedOption] = useState('option1');
@@ -79,7 +79,7 @@ export default function Checkout({ navigation }) {
             <Image style={styles.logo} source={require("../../assets/payment1.png")} />
           </View>
           <View>
-            <Text style={styles.text}>VNPay QR</Text>
+            <Text style={styles.text}>ZaloPay QR</Text>
           </View>
           <View style={styles.icon3}>
             <Ionicons

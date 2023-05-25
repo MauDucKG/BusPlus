@@ -134,9 +134,24 @@ export default function History({ navigation }) {
               return (
                 <BusRoute route={route} navigation={navigation} key={index} />
               );
-              
             })}
           </ScrollView>
+          {/* <TabView>
+            <TabView.Item>
+            <ScrollView>
+              {filteredData.map((route, index) => {
+              return (
+                <BusRoute route={route} navigation={navigation} key={index} />
+              );
+            })}
+          </ScrollView>
+            </TabView.Item>
+            <TabView.Item>
+              <ScrollView>
+                <Text>1</Text>
+              </ScrollView>
+            </TabView.Item>
+          </TabView> */}
         </View>
     </SafeAreaView>
   );

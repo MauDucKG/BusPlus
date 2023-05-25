@@ -11,11 +11,11 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = ({ navigation }) => {
   const handleLogOut = () => {
-    return navigation.navigate("Login");
+    return navigation.navigate("LoginS");
   };
 
   const handleProfile = () => {
-    return navigation.navigate("Profile");
+    return navigation.navigate("ProfileS");
   };
 
   const handleAccount = () => {

@@ -14,7 +14,7 @@ export default function Profile() {
   return (
     <ProfileStack.Navigator>
       <ProfileStack.Screen
-        name="Profile"
+        name="ProfileS"
         component={ProfileScreen}
         options={{ headerShown: false }}
       />
