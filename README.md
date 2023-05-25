@@ -1,3 +1,3 @@
 # BusPlus
-- Tài khoản: lamtung
-- Mật khẩu: lamtung
+- Tài khoản: tunglam
+- Mật khẩu: tunglam
