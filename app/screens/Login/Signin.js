@@ -20,8 +20,12 @@ const Login = ({ navigation }) => {
       updateToken(res.token);
       navigation.navigate("Main")
     }
+    
   }
-
+  const handleLogin1 = async() => {
+      
+    navigation.navigate("Main")
+  }
   const create = () => {
     return navigation.navigate('Signup');
   };
@@ -34,7 +38,7 @@ const Login = ({ navigation }) => {
     <>
     <View style = {styles.container}>
       <View style = {styles.container1}>
-        <TouchableOpacity style={styles.thanh} onPress={handleLogin}>
+        <TouchableOpacity style={styles.thanh} onPress={handleLogin1}>
           <View style={styles.row}>
             <Text style={styles.thanhText}>Welcome to BusPlus as a guest</Text>
             <Ionicons style={styles.padd} name={"chevron-forward-outline"} size={20} color={"#FFFFFF"}></Ionicons>
