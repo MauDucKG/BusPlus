@@ -6,6 +6,8 @@ import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput,
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { AuthContext } from '../../context/AuthContext';
 import * as api from '../../api/api'
+import LottieView from 'lottie-react-native';
+
 
 const Login = ({ navigation }) => {
   const { updateToken, updateUserId, token } = useContext(AuthContext);
@@ -40,8 +42,15 @@ const Login = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.container2}>          
+      {/* <View style={styles.container2}>          
         <Image style={styles.logo} source={require("../../assets/test.png")} />
+      </View> */}
+      <View style={{height: 375, width: 375}}>
+        <LottieView
+          source={require('../../assets/bus-ticket.json')}
+          autoPlay
+          loop
+        />
       </View>
 
       <View style={styles.container2}>        
