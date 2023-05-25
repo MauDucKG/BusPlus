@@ -9,22 +9,22 @@ import {
   TouchableOpacity,
   Animated
 } from "react-native";
-// import LottieView from 'lottie-react-native';
+import LottieView from 'lottie-react-native';
 
 export default WelcomeScreen = ({ navigation }) => {
   const progress = useRef(new Animated.Value(0)).current;
   return (
     <View style={styles.container}>
-      <View style={styles.container2}>          
+      {/* <View style={styles.container2}>          
         <Image style={styles.logo} source={require("../../assets/test1.png")} />
-      </View>
-      {/* <View style={{height: 300, width: 300}}>
-        <LottieView
-          autoPlay
-          progress={progress}
-          source={require('../assets/lottie/man-running.json')}
-        />
       </View> */}
+      <View style={{height: 375, width: 375}}>
+        <LottieView
+          source={require('../../assets/bus-transport.json')}
+          autoPlay
+          loop
+        />
+      </View>
 
     <View style={styles.container1}>  
       <View style={styles.container2}>  
