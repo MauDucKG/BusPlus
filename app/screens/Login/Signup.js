@@ -4,11 +4,23 @@ import axios from "axios";
 import { ImageBackground } from "react-native";
 import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, Alert, Linking } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import * as api from '../../api/api.js';
+
+import { AuthContext } from '../../context/AuthContext.js';
+
 
 const Login = ({ navigation }) => {
-  const handleLogin = () => {
-    return navigation.navigate('Login');
-  };
+  const [username,setUsername] = useState('');
+  const [password,setPassword] = useState('');
+  const { updateToken } = useContext(AuthContext)
+  const handleSignUp = async() => {
+    res = await api.post({url:"api/v1/users/register",
+                                data: `username=${username}&password=${password}`});
+                                
+    // console.log(res);
+    updateToken(res.token);
+    navigation.navigate('Login');
+  }
 
   const create = () => {
     return navigation.navigate('Signup');
@@ -37,6 +49,7 @@ const Login = ({ navigation }) => {
               style={styles.input}
               placeholder="Username"
               // onChangeText={(text) => setUsername(text)}
+              onChangeText={(value) => setUsername(value)}
             />
           </View>
         </View>
@@ -50,6 +63,7 @@ const Login = ({ navigation }) => {
               placeholder="Password"
               secureTextEntry={true}
               // onChangeText={(text) => setPassword(text)}
+              onChangeText={(value) => setPassword(value)}
             />
           </View>
         </View>
@@ -71,7 +85,7 @@ const Login = ({ navigation }) => {
       <View style = {styles.container3}></View>
 
       <View style={styles.content}>
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <TouchableOpacity style={styles.button} onPress={handleSignUp}>
           <Text style={styles.thanhText}>Sign up</Text>
         </TouchableOpacity>
       </View>    
@@ -79,7 +93,7 @@ const Login = ({ navigation }) => {
       <View style = {styles.container3}></View>
 
       <View style = {styles.container3}>
-        <TouchableOpacity style={styles.thanh} onPress={handleLogin}>
+        <TouchableOpacity style={styles.thanh} onPress={handleSignUp}>
           <View style={styles.row}>
             <Ionicons style={styles.padd} name={"chevron-back-outline"} size={20} color={"#FFFFFF"}></Ionicons>
             <Text style={styles.thanhText}>Log in </Text>

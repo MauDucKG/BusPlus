@@ -4,11 +4,21 @@ import axios from "axios";
 import { ImageBackground } from "react-native";
 import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, Alert, Linking } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { AuthContext } from '../../context/AuthContext';
+import * as api from '../../api/api'
 
 const Login = ({ navigation }) => {
-  const handleLogin = () => {
-    return navigation.navigate('Main');
-  };
+  const { updateToken, updateUserId, token } = useContext(AuthContext);
+  const [username,setUsername] = useState('');
+  const [password,setPassword] = useState('');
+  const handleLogin = async() => {
+    const res = await api.post({url:"api/v1/users/login",
+              data:`username=${username}&password=${password}`});
+    if(res){
+      updateToken(res.token);
+      navigation.navigate("Main")
+    }
+  }
 
   const create = () => {
     return navigation.navigate('Signup');
@@ -21,7 +31,6 @@ const Login = ({ navigation }) => {
   return (
     <>
     <View style = {styles.container}>
-
       <View style = {styles.container1}>
         <TouchableOpacity style={styles.thanh} onPress={handleLogin}>
           <View style={styles.row}>
@@ -41,7 +50,7 @@ const Login = ({ navigation }) => {
             <TextInput
               style={styles.input}
               placeholder="Username"
-              // onChangeText={(text) => setUsername(text)}
+              onChangeText={(value) => setUsername(value)}
             />
           </View>
         </View>
@@ -54,7 +63,7 @@ const Login = ({ navigation }) => {
               style={styles.input}
               placeholder="Password"
               secureTextEntry={true}
-              // onChangeText={(text) => setPassword(text)}
+              onChangeText={(value) => setPassword(value)}
             />
           </View>
           <View style={styles.captionContainer}>
