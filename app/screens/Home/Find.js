@@ -7,8 +7,10 @@ import {
   TouchableOpacity,
   StatusBar,
   Dimensions,
+  ScrollView,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { Tab, TabView } from "@rneui/themed";
 import React, { useState, useEffect, useRef } from "react";
 import MapView, { LatLng, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
@@ -58,9 +60,11 @@ export default function Find({ navigation }) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [showDiretions, setShowDirections] = useState(false);
+  const [showway, setshowway] = useState(false);
   const [distance, setDistance] = useState(0);
   const [duration, setDuration] = useState(0);
   const mapRef = useRef(null);
+  const [index, setIndex] = React.useState(0);
 
   const moveTo = async (position) => {
     const camera = await mapRef.current?.getCamera();
@@ -87,6 +91,7 @@ export default function Find({ navigation }) {
   const traceRoute = () => {
     if (origin && destination) {
       setShowDirections(true);
+      navigation.navigate("Find all way", { origin, destination });
       mapRef.current?.fitToCoordinates([origin, destination], { edgePadding });
     }
   };
@@ -188,6 +193,25 @@ export default function Find({ navigation }) {
           </TouchableOpacity>
         </View>
       </View>
+      <View style={styles.body}>
+        <Tab value={index} onChange={(e) => setIndex(e)}>
+          <Tab.Item title="Details" />
+          <Tab.Item title="Stop station" />
+        </Tab>
+        <TabView
+          value={index}
+          onChange={setIndex}
+          animationType="spring"
+          style={{ backgroundColor: "white" }}
+        >
+          <TabView.Item style={{ width: "100%" }}>
+            <ScrollView></ScrollView>
+          </TabView.Item>
+          <TabView.Item style={{ width: "100%" }}>
+            <ScrollView></ScrollView>
+          </TabView.Item>
+        </TabView>
+      </View>
     </View>
   );
 }
@@ -208,7 +232,7 @@ const styles = StyleSheet.create({
     width: "95%",
     shadowRadius: 4,
     borderRadius: 8,
-    top: 8,
+    top: 16,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
@@ -224,7 +248,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   searchSection3: {
-    marginTop: 40,
+    marginTop: 16,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -240,9 +264,9 @@ const styles = StyleSheet.create({
   },
   button: {
     position: "relative",
-    top: 8,
+    top: 16,
     backgroundColor: "#F5C0D2",
-    height: 44,
+    height: 58,
     width: 170,
     borderRadius: 8,
     flexDirection: "row",
@@ -250,6 +274,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
   },
+
+  body: {
+    flex: 1,
+    height: "50%",
+    backgroundColor: "white",
+    borderTopColor: "#F4F3F5",
+    borderTopWidth: 1,
+  },
+
   button1: {
     flexDirection: "row",
     justifyContent: "center",
