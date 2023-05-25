@@ -11,6 +11,7 @@ import Purchase from "./screens/Purchase";
 import Tasks from "./screens/Tasks";
 import Login from "./screens/Login";
 import OnBoarding from "./screens/OnBoarding";
+import { AuthContext, AuthProvider } from "./context/AuthContext";
 
 const Tab = createBottomTabNavigator();
 const createS = createNativeStackNavigator();
@@ -80,19 +81,21 @@ const AppStack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <AppStack.Navigator>
-        <AppStack.Screen
-          name="LoginStack"
-          component={LoginStackScreen}
-          options={{ headerShown: false }}
-        />
-        <AppStack.Screen
-          name="Main"
-          component={Screen}
-          options={{ headerShown: false }}
-        />
-      </AppStack.Navigator>
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <AppStack.Navigator>
+          <AppStack.Screen
+            name="LoginStack"
+            component={LoginStackScreen}
+            options={{ headerShown: false }}
+          />
+          <AppStack.Screen
+            name="Main"
+            component={Screen}
+            options={{ headerShown: false }}
+          />
+        </AppStack.Navigator>
+      </NavigationContainer>
+    </AuthProvider>
   );
 }
