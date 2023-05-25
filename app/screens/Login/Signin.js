@@ -45,7 +45,7 @@ const Login = ({ navigation }) => {
       {/* <View style={styles.container2}>          
         <Image style={styles.logo} source={require("../../assets/test.png")} />
       </View> */}
-      <View style={{height: 375, width: 375}}>
+      <View style={{height: 244, width: 375}}>
         <LottieView
           source={require('../../assets/bus-ticket.json')}
           autoPlay
@@ -94,10 +94,11 @@ const Login = ({ navigation }) => {
       </View>    
 
       <View style = {styles.container3}>
-        <Image style={styles.logo1} source={require("../../assets/fb.png")} />
+        {/* <Image style={styles.logo1} source={require("../../assets/fb.png")} />
         <Image style={styles.logocenter} source={require("../../assets/mail.png")} />
-        <Image style={styles.logo1} source={require("../../assets/dt.png")} />
+        <Image style={styles.logo1} source={require("../../assets/dt.png")} /> */}
       </View>
+      
 
 
       <View style = {styles.container3}>

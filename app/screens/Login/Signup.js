@@ -40,7 +40,7 @@ const Login = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={{height: 375, width: 375}}>
+      <View style={{height: 244, width: 375}}>
         <LottieView
           source={require('../../assets/bus-ticket.json')}
           autoPlay

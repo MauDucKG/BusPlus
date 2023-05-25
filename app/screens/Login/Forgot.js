@@ -4,6 +4,7 @@ import axios from "axios";
 import { ImageBackground } from "react-native";
 import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, Alert, Linking } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import LottieView from 'lottie-react-native';
 
 const Login = ({ navigation }) => {
   const handleLogin = () => {
@@ -23,7 +24,13 @@ const Login = ({ navigation }) => {
       </View>
 
       <View style={styles.container2}>          
-        <Image style={styles.logo} source={require("../../assets/test.png")} />
+      <View style={{height: 244, width: 375}}>
+        <LottieView
+          source={require('../../assets/bus-ticket.json')}
+          autoPlay
+          loop
+        />
+      </View>
       </View>
 
       <View style={styles.container2}>        
